@@ -1,9 +1,8 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:portfolio_web/constants.dart';
-
-import 'components/glass_content.dart';
+import 'components/logo_blur_box.dart';
+import 'components/person_pic.dart';
 
 class TopSection extends StatelessWidget {
   @override
@@ -11,10 +10,7 @@ class TopSection extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
       alignment: Alignment.center,
-      constraints: BoxConstraints(
-        maxHeight: 900,
-        minHeight: 700,
-      ),
+      height: size.height,
       width: double.infinity,
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -30,6 +26,11 @@ class TopSection extends StatelessWidget {
         child: Stack(
           children: [
             LogoAndBlurBox(size: size),
+            // PersonPic(),
+            Positioned(
+              bottom: 0,
+              child: Menu(),
+            ),
           ],
         ),
       ),
@@ -37,26 +38,18 @@ class TopSection extends StatelessWidget {
   }
 }
 
-class LogoAndBlurBox extends StatelessWidget {
-  const LogoAndBlurBox({
-    super.key,
-    required this.size,
-  });
+class Menu extends StatefulWidget {
+  @override
+  State<Menu> createState() => _MenuState();
+}
 
-  final Size size;
-
+class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Image.asset('assets/images/logo.png'),
-        Spacer(),
-        GlassContent(size: size),
-        Spacer(
-          flex: 3,
-        ),
-      ],
+    return Container(
+      constraints: BoxConstraints(maxWidth: 1110),
+      height: 100,
+      decoration: BoxDecoration(color: Colors.white),
     );
   }
 }
