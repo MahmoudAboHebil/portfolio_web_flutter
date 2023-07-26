@@ -10,7 +10,7 @@ class TopSection extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
       alignment: Alignment.center,
-      height: size.height,
+      constraints: BoxConstraints(maxHeight: 900, minHeight: 700),
       width: double.infinity,
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -21,12 +21,13 @@ class TopSection extends StatelessWidget {
         ),
       ),
       child: Container(
+        alignment: Alignment.center,
         width: 1200,
         margin: EdgeInsets.only(top: kDefaultPadding),
         child: Stack(
           children: [
             LogoAndBlurBox(size: size),
-            // PersonPic(),
+            PersonPic(),
             Positioned(
               bottom: 0,
               child: Menu(),
@@ -44,12 +45,51 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
+  int selectedIndex = 0;
+  int hoverIndex = 0;
+  List<String> menuItems = [
+    "Home",
+    "Abour",
+    "Services",
+    "Portfolio",
+    "Testimonial",
+    "Contact"
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * 2.5),
       constraints: BoxConstraints(maxWidth: 1110),
       height: 100,
-      decoration: BoxDecoration(color: Colors.white),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10),
+          topRight: Radius.circular(10),
+        ),
+        boxShadow: [kDefaultShadow],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: List.generate(
+          menuItems.length,
+          (index) => buildMenuItem(index),
+        ),
+      ),
     );
   }
+
+  Widget buildMenuItem(int index) => Container(
+        constraints: BoxConstraints(minWidth: 122),
+        height: 100,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Text(
+              menuItems[index],
+              style: TextStyle(fontSize: 20, color: kTextColor),
+            ),
+          ],
+        ),
+      );
 }
