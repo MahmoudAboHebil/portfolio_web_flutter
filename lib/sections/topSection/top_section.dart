@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:portfolio_web/constants.dart';
 import 'components/logo_blur_box.dart';
+import 'components/menu.dart';
 import 'components/person_pic.dart';
 
 class TopSection extends StatelessWidget {
@@ -37,59 +38,4 @@ class TopSection extends StatelessWidget {
       ),
     );
   }
-}
-
-class Menu extends StatefulWidget {
-  @override
-  State<Menu> createState() => _MenuState();
-}
-
-class _MenuState extends State<Menu> {
-  int selectedIndex = 0;
-  int hoverIndex = 0;
-  List<String> menuItems = [
-    "Home",
-    "Abour",
-    "Services",
-    "Portfolio",
-    "Testimonial",
-    "Contact"
-  ];
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * 2.5),
-      constraints: BoxConstraints(maxWidth: 1110),
-      height: 100,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(10),
-          topRight: Radius.circular(10),
-        ),
-        boxShadow: [kDefaultShadow],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: List.generate(
-          menuItems.length,
-          (index) => buildMenuItem(index),
-        ),
-      ),
-    );
-  }
-
-  Widget buildMenuItem(int index) => Container(
-        constraints: BoxConstraints(minWidth: 122),
-        height: 100,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Text(
-              menuItems[index],
-              style: TextStyle(fontSize: 20, color: kTextColor),
-            ),
-          ],
-        ),
-      );
 }
