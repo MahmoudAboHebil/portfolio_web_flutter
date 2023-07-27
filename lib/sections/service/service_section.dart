@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../components/section_title.dart';
 import '../../constants.dart';
+import '../../models/Service.dart';
+import 'components/service_card.dart';
 
 class ServiceSection extends StatelessWidget {
   @override
@@ -15,6 +17,11 @@ class ServiceSection extends StatelessWidget {
             title: "Service Offerings",
             subTitle: "My Strong Arenas",
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: List.generate(
+                services.length, (index) => ServiceCard(index: index)),
+          )
         ],
       ),
     );
