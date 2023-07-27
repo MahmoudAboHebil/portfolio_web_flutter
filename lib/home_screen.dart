@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_web/sections/aboutSection/about_section.dart';
+import 'package:portfolio_web/sections/service/service_section.dart';
 import 'package:portfolio_web/sections/topSection/top_section.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -11,6 +12,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             TopSection(),
             AboutSection(),
+            ServiceSection(),
             SizedBox(
               height: 500,
             ),
